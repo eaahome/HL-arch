@@ -13,7 +13,6 @@ CREATE TABLE user (
 insert into user values ("user1", "FIRST", "SECOND", "1978-05-04", "SEX", "BIO", "MSK");
 insert into user values ("user2", "FIRST2", "SECOND2", "2000-05-04", "SEX2", "BIO2", "MSK2");
 
-
 CREATE TABLE IF NOT EXISTS account (
     login varchar(255) NOT NULL primary key,
     password varchar(255)
