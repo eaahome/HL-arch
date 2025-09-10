@@ -86,7 +86,7 @@
                     "type": "string",
                     "example": "Москва"
                   },
-                  "password": {
+                  "sex": {
                     "type": "string",
                     "example": "Секретная строка"
                   }
@@ -689,6 +689,11 @@
           },
           "birthdate": {
             "$ref": "#/components/schemas/BirthDate"
+          },
+          "sex": {
+            "type": "string",
+            "example": "М",
+            "description": "Пол"
           },
           "biography": {
             "type": "string",
