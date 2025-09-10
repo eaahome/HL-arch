@@ -8,13 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.ArrayList;
 
 public interface UserRepo extends JpaRepository<User, Long> {
-    @Query(
-            value = "SELECT * FROM user",
-            nativeQuery = true)
+    @Query(value = "SELECT * FROM user", nativeQuery = true)
     ArrayList<User> findAll();
 
-    @Query(
-            value = "SELECT * FROM user where id = :id",
-            nativeQuery = true)
+    @Query(value = "SELECT * FROM user where id = :id", nativeQuery = true)
     User findById (String id);
 }

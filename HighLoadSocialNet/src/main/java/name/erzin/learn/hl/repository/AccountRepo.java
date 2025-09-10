@@ -7,13 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.ArrayList;
 
 public interface AccountRepo extends JpaRepository<Account, Long> {
-    @Query(
-            value = "SELECT * FROM account",
-            nativeQuery = true)
+    @Query(value = "SELECT * FROM account", nativeQuery = true)
     ArrayList<Account> findAll();
 
-    @Query(
-            value = "SELECT login, password FROM account where login = :login",
-            nativeQuery = true)
+    @Query(value = "SELECT login, password FROM account where login = :login", nativeQuery = true)
     ArrayList<Account> findByLogin (String login);
 }
