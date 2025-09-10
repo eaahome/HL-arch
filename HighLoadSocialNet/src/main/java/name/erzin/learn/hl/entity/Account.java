@@ -6,9 +6,8 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class Test {
+public class Account {
     @Id
-    Integer id;
-    String firstName;
-    String lastName;
+    String login;
+    String password;
 }

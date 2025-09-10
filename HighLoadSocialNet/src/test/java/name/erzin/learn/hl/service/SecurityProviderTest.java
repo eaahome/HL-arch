@@ -7,7 +7,7 @@ import java.security.spec.InvalidKeySpecException;
 import static org.junit.Assert.*;
 
 public class SecurityProviderTest {
-    SecurityProvider sp = new SecurityProvider();
+    SecurityProvider sp = new SecurityProvider(null);
 
     public SecurityProviderTest() throws NoSuchAlgorithmException {
     }
@@ -23,5 +23,17 @@ public class SecurityProviderTest {
     @Test
     public void isValidPasswordTest () throws NoSuchAlgorithmException, InvalidKeySpecException {
         assertTrue (sp.isValidPassword(PLAIN_PASSWORD, ENCODED_PASSWORD));
+    }
+
+    //@Test
+    public void createToken() {
+        String jwt = sp.createJwt();
+        assertEquals("", jwt);
+    }
+
+    @Test
+    public void checkToken() {
+        String jwt = sp.createJwt();
+        assertTrue(sp.isValidJwt(sp.createJwt()));
     }
 }
