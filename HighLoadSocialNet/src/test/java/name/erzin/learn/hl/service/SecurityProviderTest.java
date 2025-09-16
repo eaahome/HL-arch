@@ -1,5 +1,6 @@
 package name.erzin.learn.hl.service;
 
+import name.erzin.learn.hl.security.SecurityProvider;
 import org.junit.Test;
 
 import java.security.NoSuchAlgorithmException;
@@ -14,6 +15,7 @@ public class SecurityProviderTest {
 
     static String ENCODED_PASSWORD = "8DUJw3vDAUsBQnBYFwmnmg==";
     static String PLAIN_PASSWORD = "123";
+    static String USER = "user1";
 
     @Test
     public void prepareHashForDBTest() throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -27,13 +29,13 @@ public class SecurityProviderTest {
 
     //@Test
     public void createToken() {
-        String jwt = sp.createJwt();
+        String jwt = sp.createJwt(USER);
         assertEquals("", jwt);
     }
 
     @Test
     public void checkToken() {
-        String jwt = sp.createJwt();
-        assertTrue(sp.isValidJwt(sp.createJwt()));
+        String jwt = sp.createJwt(USER);
+        assertTrue(sp.isValidJwt(sp.createJwt(USER)));
     }
 }

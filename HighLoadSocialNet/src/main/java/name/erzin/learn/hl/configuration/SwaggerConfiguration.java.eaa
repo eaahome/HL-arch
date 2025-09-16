@@ -1,0 +1,28 @@
+package name.erzin.learn.hl;
+
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpHeaders;
+
+import java.util.Collections;
+
+@Configuration
+@Import(OpenAPIDocumentationConfig.class) // openapi generated config class
+public class SwaggerConfiguration {
+    @Autowired
+    ApplicationContext context;
+
+    @PostConstruct
+    public void extendExistingDocketWithSecurity() {
+        Docket docket = context.getBean(Docket.class);
+        docker.securitySchemes(Collections.singletonList(bearer()));
+    }
+
+    private static ApiKey bearer() {
+        // where "bearerAuth" - name of your schema in YML spec. file
+        return new ApiKey("bearerAuth", HttpHeaders.AUTHORIZATION, "header");
+    }
+}

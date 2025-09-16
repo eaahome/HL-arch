@@ -1,4 +1,4 @@
-package name.erzin.learn.hl.service;
+package name.erzin.learn.hl.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.TextCodec;
@@ -45,8 +45,8 @@ public class SecurityProvider {
         return encodedString;
     }
 
-    public boolean isValidUserPassword (String login, String plainPassword) {
-        String encodedDbPassword = getEncodedUserPassword (login);
+    public boolean isValidUserPassword(String login, String plainPassword) {
+        String encodedDbPassword = getEncodedUserPassword(login);
 
         try {
             return isValidPassword(plainPassword, encodedDbPassword);
@@ -55,7 +55,7 @@ public class SecurityProvider {
         }
     }
 
-    private String getEncodedUserPassword (String login) {
+    private String getEncodedUserPassword(String login) {
         ArrayList<Account> result = accountRepo.findByLogin(login);
         try {
             return result.get(0).getPassword();
@@ -115,23 +115,36 @@ public class SecurityProvider {
         return generateSalt();
     }
 
-    public boolean isValidJwt (String jwtStr) {
+    public boolean isValidJwt(String jwtStr) {
         try {
             Jws<Claims> jws = Jwts.parser()
                     .setSigningKey(getSigningKey())
                     .build()
-                    .parseClaimsJws(jwtStr);
+                    .parseSignedClaims(jwtStr);
         } catch (JwtException e) {
             return false;
         }
         return true;
     }
 
-    public String createJwt() {
+    public String extractLogin(String jwtStr) {
+        try {
+            Jws<Claims> claims = Jwts.parser()
+                    .setSigningKey(getSigningKey())
+                    .build()
+                    .parseSignedClaims(jwtStr);
+            return (String) claims.getPayload().get("login");
+        } catch (JwtException e) {
+            return null;
+        }
+    }
+
+    public String createJwt(String login) {
         String jwt = Jwts.builder()
                 .setIssuedAt(Date.from(Instant.now()))
                 .setExpiration(Date.from(Instant.now().plusSeconds(getExpirationSec())))
-                .signWith (SignatureAlgorithm.HS256, getSigningKey())
+                .signWith(SignatureAlgorithm.HS256, getSigningKey())
+                .claim("login", login)
                 .compact();
         return jwt;
     }
