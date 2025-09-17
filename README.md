@@ -20,8 +20,8 @@
 
 * Создать пользователя БД "hl1"
 * Создать под ним БД "hl1"
-
 * Инициализировать БД скриптом createdb.sql
+* Скопировать файл ```local.properties.template``` в ```local.properties```, положить его в каталог, из которого будет запускаться jar, и прописать пароль к БД в нем
 
 # Run
 
@@ -30,6 +30,10 @@
 При необходимости использования IPv4:
 
 ``` java -jar -Djava.net.preferIPv4Stack=true HighLoadSocialNet-1.0-SNAPSHOT.jar```
+
+# Test
+
+Коллекция для Postman: [HighLoadSocialNet/src/main/resources/HighLoadSocialNet basics.postman_collection.json](https://github.com/eaahome/HL-arch/blob/master/HighLoadSocialNet/src/main/resources/HighLoadSocialNet%20basics.postman_collection.json)
 
 # TODO
 
