@@ -31,6 +31,10 @@
 
 ``` java -jar -Djava.net.preferIPv4Stack=true HighLoadSocialNet-1.0-SNAPSHOT.jar```
 
+# Test
+
+Коллекция для Postman: HighLoadSocialNet/src/main/resources/HighLoadSocialNet basics.postman_collection.json
+
 # TODO
 
 * Автоматическая инициализация БД
