@@ -13,7 +13,6 @@
 
 # Build
 
-* Прописать логин и пароль пользователя БД в application.properties
 * Собрать проект ```mvn clean install```
 
 # Install
