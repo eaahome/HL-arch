@@ -1,6 +1,6 @@
 # Назначение
 
-Учебный проект High-load arhitect
+Учебный проект High-load architect
 
 # Requirements
 
