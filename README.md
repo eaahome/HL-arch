@@ -27,7 +27,8 @@
 
 ``` java -jar HighLoadSocialNet-1.0-SNAPSHOT.jar```
 
-При необходимости использования IPv4
+При необходимости использования IPv4:
+
 ``` java -jar -Djava.net.preferIPv4Stack=true HighLoadSocialNet-1.0-SNAPSHOT.jar```
 
 # TODO
