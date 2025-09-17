@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "cb2e73e8-5aad-4ec8-b005-0f20af27425b",
+		"name": "HighLoadSocialNet basics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48508544",
+		"_collection_link": "https://eaa-home-9424462.postman.co/workspace/62a0c65b-d7c4-4a09-8145-e6b9728decd1/collection/48508544-cb2e73e8-5aad-4ec8-b005-0f20af27425b?action=share&source=collection_link&creator=48508544"
+	},
+	"item": [
+		{
+			"name": "User get - fail 404",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/user/get/12",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"user",
+						"get",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User get - OK",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/user/get/user1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"user",
+						"get",
+						"user1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "192.168.4.242:8080"
+		}
+	]
+}
