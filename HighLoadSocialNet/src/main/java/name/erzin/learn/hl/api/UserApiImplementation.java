@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -79,5 +81,18 @@ public class UserApiImplementation implements UserApiDelegate {
         } else {
             return new ResponseEntity<>(null, HttpStatusCode.valueOf(404));
         }
+    }
+
+    @Override
+    public ResponseEntity<List<User>> userSearchGet(String firstName, String lastName) {
+        ArrayList<name.erzin.learn.hl.entity.User> users = userRepo.findByFirstNameAndSecondName(firstName, lastName);
+        List<User> usersDTO = new ArrayList<>();
+
+        for (name.erzin.learn.hl.entity.User user : users) {
+            User userDTO = modelMapper.map(user, User.class);
+            usersDTO.add(userDTO);
+        }
+
+        return new ResponseEntity<>(usersDTO, HttpStatusCode.valueOf(200));
     }
 }

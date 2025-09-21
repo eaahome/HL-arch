@@ -17,6 +17,12 @@ public interface UserRepo extends JpaRepository<User, String> {
     @Query(value = "SELECT * FROM \"user\" where id = :id", nativeQuery = true)
     Optional<User> findById (String id);
 
+    @Query(value = "SELECT * FROM \"user\" "
+                    + "where first_name like :firstName% and second_name like :secondName% "
+                    + "order by id",
+            nativeQuery = true)
+    ArrayList<User> findByFirstNameAndSecondName (String firstName, String secondName);
+
     @Transactional
     @Modifying
     @Query(value = "INSERT INTO \"user\" (id, first_name, second_name, birthdate, sex, biography, city)"
