@@ -1,6 +1,6 @@
 # Назначение
 
-Учебный проект High-load arhitect
+Учебный проект High-load architect
 
 # Requirements
 
@@ -13,7 +13,6 @@
 
 # Build
 
-* Прописать логин и пароль пользователя БД в application.properties
 * Собрать проект ```mvn clean install```
 
 # Install
