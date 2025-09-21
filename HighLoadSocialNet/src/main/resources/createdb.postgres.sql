@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS public."user" (
     second_name character varying NOT NULL,
     birthdate character varying NOT NULL,
     sex character varying NOT NULL,
-    biography character varying NOT NULL,
+    biography character varying NULL,
     city character varying NOT NULL
 );
 
