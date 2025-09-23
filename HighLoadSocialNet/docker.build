@@ -1,0 +1,3 @@
+MVN=~/bin/mvn
+
+$MVN spring-boot:build-image -Dspring-boot.build-image.imageName=erzinname/high-load-social-net
