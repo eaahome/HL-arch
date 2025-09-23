@@ -1,4 +1,10 @@
-local.properties
+TODO
+local.properties*
+local.env*
+*.log
+src/main/jmeter/report*
+src/main/jmeter/done*
+src/main/jmeter/HL Architect Basic Test Plan Result.csv
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -38,4 +44,3 @@ build/
 
 ### Mac OS ###
 .DS_Store
-/TODO
