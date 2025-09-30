@@ -1,3 +1,5 @@
 src/
 responses
 *.csv
+report*
+done*
