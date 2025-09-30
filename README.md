@@ -58,6 +58,11 @@
 
 Коллекция для Postman: [HighLoadSocialNet/src/main/resources/HighLoadSocialNet basics.postman_collection.json](https://github.com/eaahome/HL-arch/blob/master/HighLoadSocialNet/src/main/resources/HighLoadSocialNet%20basics.postman_collection.json)
 
+# Мониторинг
+https://docs.docker.com/engine/daemon/prometheus/
+
+
+
 # TODO
 
 * Автоматическая инициализация БД
