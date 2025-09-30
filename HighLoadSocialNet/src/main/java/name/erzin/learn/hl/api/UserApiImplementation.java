@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class UserApiImplementation implements UserApiDelegate {
     UserRepo userRepo;
 
     @Override
+    @Transactional(readOnly = false)
     public ResponseEntity<UserRegisterPost200Response> userRegisterPost(UserRegisterPostRequest userRegisterPostRequest) {
         // Convert request to Entity
         name.erzin.learn.hl.entity.User user = modelMapper.map(userRegisterPostRequest,
@@ -71,6 +73,7 @@ public class UserApiImplementation implements UserApiDelegate {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ResponseEntity<User> userGetIdGet(String id) {
         Optional<name.erzin.learn.hl.entity.User> user = userRepo.findById(id);
 
@@ -84,6 +87,7 @@ public class UserApiImplementation implements UserApiDelegate {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ResponseEntity<List<User>> userSearchGet(String firstName, String lastName) {
         ArrayList<name.erzin.learn.hl.entity.User> users = userRepo.findByFirstNameAndSecondName(firstName, lastName);
         List<User> usersDTO = new ArrayList<>();
