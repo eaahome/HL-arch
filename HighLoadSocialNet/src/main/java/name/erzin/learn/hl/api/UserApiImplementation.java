@@ -73,7 +73,7 @@ public class UserApiImplementation implements UserApiDelegate {
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public ResponseEntity<User> userGetIdGet(String id) {
         Optional<name.erzin.learn.hl.entity.User> user = userRepo.findById(id);
 
