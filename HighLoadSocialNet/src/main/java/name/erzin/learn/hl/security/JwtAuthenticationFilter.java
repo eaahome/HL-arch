@@ -27,7 +27,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             String authHeader = request.getHeader("Authorization");
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                String token = authHeader.substring(7);
+                String token = securityProvider.extractJwtFromHeader(authHeader);
 
                 if (isValidToken(token)) {
                     String userId = extractUserIdFromToken(token);
@@ -60,7 +60,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private String extractUserIdFromToken(String token) {
         // Реализуйте извлечение user ID из токена
         // Пример для JWT: Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-        return securityProvider.extractLogin(token);
+        return securityProvider.extractLoginFromJwt(token);
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities() {

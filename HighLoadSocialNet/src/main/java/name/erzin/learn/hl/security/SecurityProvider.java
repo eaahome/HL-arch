@@ -2,6 +2,7 @@ package name.erzin.learn.hl.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.TextCodec;
+import jakarta.servlet.http.HttpServletRequest;
 import name.erzin.learn.hl.entity.Account;
 import name.erzin.learn.hl.repository.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,7 +128,20 @@ public class SecurityProvider {
         return true;
     }
 
-    public String extractLogin(String jwtStr) {
+    public String extractJwtFromHeader(String authHeader) {
+        return authHeader.substring(7);
+    }
+
+    public String extractLoginFromRequest(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        return extractLoginFromHeader(authHeader);
+    }
+
+    public String extractLoginFromHeader(String authHeader) {
+        return extractLoginFromJwt(extractJwtFromHeader(authHeader));
+    }
+
+    public String extractLoginFromJwt(String jwtStr) {
         try {
             Jws<Claims> claims = Jwts.parser()
                     .setSigningKey(getSigningKey())
