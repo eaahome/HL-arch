@@ -1,6 +1,6 @@
 curl -v -X 'PUT' \
-  'http://localhost:8080/post/delete/2b05a603-c391-4973-a18f-79ab30e0c940' \
+  'http://localhost:8080/post/delete/648d1eda-472f-4a54-8472-91651c2e7ba3' \
   -H 'accept: */*' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjAyNjIzNjQsImV4cCI6MTc2MDM0ODc2NCwibG9naW4iOiJ1c2VyMSJ9.avKzz-vQg4XaidCYM0vgaA51aCxxKL6uim9ApB7qaFs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjAzODUzOTMsImV4cCI6MTc2MDQ3MTc5MywibG9naW4iOiJ1c2VyMSJ9.fsWSScqMDgp8q865tJpbqMZ3ZGbhoeN5-x7GUv2N31g'
 
 echo
