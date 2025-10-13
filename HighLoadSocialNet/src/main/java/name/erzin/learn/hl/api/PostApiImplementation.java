@@ -3,18 +3,16 @@ package name.erzin.learn.hl.api;
 import jakarta.servlet.http.HttpServletRequest;
 import name.erzin.learn.hl.model.*;
 import name.erzin.learn.hl.repository.PostRepo;
-import name.erzin.learn.hl.repository.UserRepo;
 import name.erzin.learn.hl.security.SecurityProvider;
+import name.erzin.learn.hl.service.CachedFeedService;
+import name.erzin.learn.hl.service.DatabaseFeedService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.request.NativeWebRequest;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -28,18 +26,14 @@ public class PostApiImplementation implements PostApiDelegate {
     private SecurityProvider securityProvider;
     @Autowired
     private PostRepo postRepo;
+    @Autowired
+    CachedFeedService feedService;
 
     @Override
     public ResponseEntity<List<Post>> postFeedGet(BigDecimal offset, BigDecimal limit) {
         String userId = securityProvider.extractLoginFromRequest(request);
 
-        ArrayList<name.erzin.learn.hl.entity.Post> posts = postRepo.feed(userId, offset.intValue(), limit.intValue());
-        List<Post> postsDTO = new ArrayList<>();
-
-        for (name.erzin.learn.hl.entity.Post post : posts) {
-            Post postDTO = modelMapper.map(post, Post.class);
-            postsDTO.add(postDTO);
-        }
+        List<Post> postsDTO = feedService.getPosts(userId, offset, limit);
 
         return new ResponseEntity<>(postsDTO, HttpStatusCode.valueOf(200));
     }
@@ -55,6 +49,7 @@ public class PostApiImplementation implements PostApiDelegate {
         post.setText(postCreatePostRequest.getText());
 
         insertPost(post);
+        feedService.onPostAdded(authorId, post);
 
         return new ResponseEntity<>(postId, HttpStatusCode.valueOf(200));
     }
@@ -64,8 +59,12 @@ public class PostApiImplementation implements PostApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Void> postDeleteIdPut(String id) {
-        postRepo.deletePost(id);
+    public ResponseEntity<Void> postDeleteIdPut(String postId) {
+        postRepo.deletePost(postId);
+
+        String authorId = securityProvider.extractLoginFromRequest(request);
+        feedService.onPostDeleted (authorId, postId);
+
         return new ResponseEntity<>(null, HttpStatusCode.valueOf(200));
     }
 

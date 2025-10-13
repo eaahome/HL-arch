@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.ArrayList;
+
 public interface FriendRepo  extends JpaRepository<Friend, String> {
     @Transactional
     @Modifying
@@ -18,4 +20,13 @@ public interface FriendRepo  extends JpaRepository<Friend, String> {
     @Query(value = "DELETE FROM \"friend\" where user_id = :userId and friend_id = :friendId",
             nativeQuery = true)
     void deleteFriend (String userId, String friendId);
+
+    /**
+     * Finds all friends for given user
+     * @param friendId
+     * @return
+     */
+    @Query(value = "SELECT * FROM \"friend\" where friend_id = :friendId",
+            nativeQuery = true)
+    ArrayList<Friend> findUsersForFriend (String friendId);
 }

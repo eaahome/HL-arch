@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class FeedService implements DatabaseFeedService {
+public class DatabaseFeedService {
     @Autowired
     private PostRepo postRepo;
     ModelMapper modelMapper = new ModelMapper();
 
-    @Override
-    public List<Post> getPosts(BigDecimal offset, BigDecimal limit, String userId) {
+    public List<Post> getPosts(String userId, BigDecimal offset, BigDecimal limit) {
         ArrayList<name.erzin.learn.hl.entity.Post> posts = postRepo.feed(userId, offset.intValue(), limit.intValue());
         List<Post> postsDTO = new ArrayList<>();
 
