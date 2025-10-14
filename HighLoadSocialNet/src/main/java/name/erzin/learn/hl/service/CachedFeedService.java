@@ -106,6 +106,6 @@ public class CachedFeedService {
             initFromList(userId, posts);
         }
 
-        return posts;
+        return posts.subList (offset, offset + limit);
     }
 }
