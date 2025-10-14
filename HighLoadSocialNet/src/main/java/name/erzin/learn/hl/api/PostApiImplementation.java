@@ -33,7 +33,7 @@ public class PostApiImplementation implements PostApiDelegate {
     public ResponseEntity<List<Post>> postFeedGet(BigDecimal offset, BigDecimal limit) {
         String userId = securityProvider.extractLoginFromRequest(request);
 
-        List<Post> postsDTO = feedService.getPosts(userId, offset, limit);
+        List<Post> postsDTO = feedService.getPosts(userId, offset.intValue(), limit.intValue());
 
         return new ResponseEntity<>(postsDTO, HttpStatusCode.valueOf(200));
     }

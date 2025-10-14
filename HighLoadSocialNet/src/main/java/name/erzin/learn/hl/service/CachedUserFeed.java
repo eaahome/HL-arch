@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 public class CachedUserFeed {
     private List<Post> posts;
-    private final int FEED_MAX_SIZE = 1000;
+    public static final int FEED_MAX_SIZE = 1000;
 
     public CachedUserFeed(Post post) {
         posts = new ArrayList<>();

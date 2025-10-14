@@ -16,8 +16,8 @@ public class DatabaseFeedService {
     private PostRepo postRepo;
     ModelMapper modelMapper = new ModelMapper();
 
-    public List<Post> getPosts(String userId, BigDecimal offset, BigDecimal limit) {
-        ArrayList<name.erzin.learn.hl.entity.Post> posts = postRepo.feed(userId, offset.intValue(), limit.intValue());
+    public List<Post> getPosts(String userId, int offset, int limit) {
+        ArrayList<name.erzin.learn.hl.entity.Post> posts = postRepo.feed(userId, offset, limit);
         List<Post> postsDTO = new ArrayList<>();
 
         for (name.erzin.learn.hl.entity.Post post : posts) {

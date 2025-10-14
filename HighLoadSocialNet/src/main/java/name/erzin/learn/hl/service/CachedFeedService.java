@@ -98,11 +98,11 @@ public class CachedFeedService {
         return null;
     }
 
-    public List<Post> getPosts(String userId, BigDecimal offset, BigDecimal limit) {
+    public List<Post> getPosts(String userId, int offset, int limit) {
         List<Post> posts = getCachedPosts(userId);
         if (posts == null) {
             log.info("Loading posts from DB for user: " + userId);
-            posts = databaseFeedService.getPosts(userId, offset, limit);
+            posts = databaseFeedService.getPosts(userId, 0, CachedUserFeed.FEED_MAX_SIZE);
             initFromList(userId, posts);
         }
 
