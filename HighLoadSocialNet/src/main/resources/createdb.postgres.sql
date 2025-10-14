@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS account (
 );
 
 insert into account values ('user1', '8DUJw3vDAUsBQnBYFwmnmg==');
-insert into account values ('user2', '123');
+insert into account values ('user2', '8DUJw3vDAUsBQnBYFwmnmg==');
 
 CREATE TABLE IF NOT EXISTS public."friend" (
     user_id character varying NOT NULL,
