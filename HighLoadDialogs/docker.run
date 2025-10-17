@@ -1,0 +1,4 @@
+docker run \
+--env-file local.env \
+-p 8080:8080 \
+'docker.io/erzinname/high-load-social-net-dialogs:latest'
