@@ -1,5 +1,17 @@
+.idea
+
 otus_db_no_index.sql
 otus-data
+
 z
 zz
 zzz
+
+TODO
+
+local.properties
+local.properties-
+local.env
+local.sh
+
+*.log
