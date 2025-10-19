@@ -2,7 +2,7 @@ curl -vX 'POST' \
   'http://localhost:8080/dialog/user2/send' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjA3MDU1NzksImV4cCI6MTc2MDc5MTk3OSwibG9naW4iOiJ1c2VyMSJ9.O2aRJmo43Ox_zWgOH9NHsrFQylQnZQzH_8d47CL17qE' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjA4MTgxNzAsImV4cCI6MTc2MDkwNDU3MCwibG9naW4iOiJ1c2VyMSJ9.l-vqziAtVggzUCMEbvY1WBuuns5PM7E6AAvztJJfSv8' \
   -d '{
   "text": "Привет, как дела?"
 }'
