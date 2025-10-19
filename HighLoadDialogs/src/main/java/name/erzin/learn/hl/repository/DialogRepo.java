@@ -18,7 +18,8 @@ public interface DialogRepo extends JpaRepository<DialogMessage, String> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO dialog (src_user_id, dst_user_id, \"text\") VALUES (:srcUserId, :dstUserId, :text)",
+    @Query(value = "INSERT INTO dialog (src_user_id, dst_user_id, \"text\", dist_key) "
+            + " VALUES (:srcUserId, :dstUserId, :text, :distKey)",
             nativeQuery = true)
-    void insertDialogMessage (String srcUserId, String dstUserId, String text);
+    void insertDialogMessage (String srcUserId, String dstUserId, String text, String distKey);
 }

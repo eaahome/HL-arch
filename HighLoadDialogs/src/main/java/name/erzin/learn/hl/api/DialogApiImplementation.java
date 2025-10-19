@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -63,7 +64,18 @@ public class DialogApiImplementation implements DialogApiDelegate {
         return new ResponseEntity<>(null, HttpStatusCode.valueOf(200));
     }
 
+    private String calculateDistributionKey (name.erzin.learn.hl.entity.DialogMessage message) {
+        String distKey;
+
+        String[] users = { message.getSrcUserId(), message.getDstUserId() };
+        Arrays.sort(users);
+        distKey = users[0] + "_" + users[1];
+
+        return distKey;
+    }
+
     private void insertDialogMessage (name.erzin.learn.hl.entity.DialogMessage message) {
-        dialogRepo.insertDialogMessage(message.getSrcUserId(), message.getDstUserId(), message.getText());
+        String distKey = calculateDistributionKey(message);
+        dialogRepo.insertDialogMessage(message.getSrcUserId(), message.getDstUserId(), message.getText(), distKey);
     }
 }
