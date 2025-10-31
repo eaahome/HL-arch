@@ -13,8 +13,8 @@ services:
       - ./setup-master.sh:/docker-entrypoint-initdb.d/setup-master.sh
       - ./z0-createdb.postgres.sql:/docker-entrypoint-initdb.d/z0-createdb.postgres.sql
       - ./z1-people.v3.sql:/docker-entrypoint-initdb.d/z1-people.v3.sql
-      - ./z2-sync-quorum.sql:/docker-entrypoint-initdb.d/z2-sync-quorum.sql
-      - ./z3-posts.ql:/docker-entrypoint-initdb.d/z3-posts.sql
+      - ./z2-posts.sql:/docker-entrypoint-initdb.d/z2-posts.sql
+      - ./z3-sync-quorum.sql:/docker-entrypoint-initdb.d/z3-sync-quorum.sql
     networks:
       - postgres-cluster
     restart: unless-stopped

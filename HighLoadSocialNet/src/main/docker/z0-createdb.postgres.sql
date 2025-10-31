@@ -19,4 +19,18 @@ CREATE TABLE IF NOT EXISTS account (
 );
 
 insert into account values ('user1', '8DUJw3vDAUsBQnBYFwmnmg==');
-insert into account values ('user2', '123');
+insert into account values ('user2', '8DUJw3vDAUsBQnBYFwmnmg==');
+
+CREATE TABLE IF NOT EXISTS public."friend" (
+    user_id character varying NOT NULL,
+    friend_id character varying NOT NULL
+);
+
+insert into friend values ('user1', 'user2');
+
+CREATE TABLE IF NOT EXISTS public."post" (
+    id character varying NOT NULL primary key,
+    "text" character varying NOT NULL,
+    author_user_id character varying NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT Now()
+);
