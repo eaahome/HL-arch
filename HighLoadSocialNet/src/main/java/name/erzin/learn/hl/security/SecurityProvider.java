@@ -22,7 +22,7 @@ import javax.crypto.spec.PBEKeySpec;
 // NOTE: salt is hardcoded and not stored in the DB
 @Component
 public class SecurityProvider {
-    static int JWT_EXPIRATION_SEC = 60 * 60 * 24; // 1 day
+    static int JWT_EXPIRATION_SEC = 60 * 60 * 24 * 30; // 30 days
     AccountRepo accountRepo;
 
     private final SecretKeyFactory secretKeyFactory;
