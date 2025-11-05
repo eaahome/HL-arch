@@ -5,7 +5,7 @@ import name.erzin.learn.hl.model.*;
 import name.erzin.learn.hl.repository.PostRepo;
 import name.erzin.learn.hl.security.SecurityProvider;
 import name.erzin.learn.hl.service.CachedFeedService;
-import name.erzin.learn.hl.service.DatabaseFeedService;
+import name.erzin.learn.hl.service.FeedService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -27,7 +27,7 @@ public class PostApiImplementation implements PostApiDelegate {
     @Autowired
     private PostRepo postRepo;
     @Autowired
-    CachedFeedService feedService;
+    FeedService feedService;
 
     @Override
     public ResponseEntity<List<Post>> postFeedGet(BigDecimal offset, BigDecimal limit) {

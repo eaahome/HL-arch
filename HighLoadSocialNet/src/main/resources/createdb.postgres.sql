@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS public."friend" (
     friend_id character varying NOT NULL
 );
 
+insert into friend values ('user1', 'user2');
+
 CREATE TABLE IF NOT EXISTS public."post" (
     id character varying NOT NULL primary key,
     "text" character varying NOT NULL,

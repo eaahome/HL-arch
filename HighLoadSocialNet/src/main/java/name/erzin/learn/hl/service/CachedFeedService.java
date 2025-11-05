@@ -14,7 +14,7 @@ import java.util.List;
 
 @Log
 @Service
-public class CachedFeedService {
+public class CachedFeedService implements FeedService {
     private HashMap<String, CachedUserFeed> userFeeds = new HashMap();
 
     @Autowired
@@ -27,7 +27,8 @@ public class CachedFeedService {
      * @param authorUserId
      * @param post
      */
-    public void onPostAdded (String authorUserId, Post post) {
+    @Override
+    public void onPostAdded(String authorUserId, Post post) {
         ArrayList<Friend> friends = friendsRepo.findUsersForFriend(authorUserId);
         if (friends == null) {
             return;
@@ -41,7 +42,8 @@ public class CachedFeedService {
      * Delete post from all feeds for all friends of author
      * @param postId
      */
-    public void onPostDeleted (String authorUserId, String postId) {
+    @Override
+    public void onPostDeleted(String authorUserId, String postId) {
         ArrayList<Friend> friends = friendsRepo.findUsersForFriend(authorUserId);
         if (friends == null) {
             return;
@@ -98,6 +100,7 @@ public class CachedFeedService {
         return null;
     }
 
+    @Override
     public List<Post> getPosts(String userId, int offset, int limit) {
         List<Post> posts = getCachedPosts(userId);
         if (posts == null) {
@@ -106,6 +109,7 @@ public class CachedFeedService {
             initFromList(userId, posts);
         }
 
-        return posts.subList (offset, offset + limit);
+        int realLimit = Math.min (posts.size(), limit);
+        return posts.subList (offset, offset + realLimit);
     }
 }
